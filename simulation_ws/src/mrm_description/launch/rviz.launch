@@ -1,0 +1,31 @@
+
+
+<!-- First launch configuration, after save and load saved config for rviz-->
+<!-- fix - - near 'inorder' -->
+<!--
+<launch>
+    <param name="robot_description" command="$(find xacro)/xacro - -inorder '$(find mrm_description)/urdf/mrm.xacro'"/>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+    <node name="rviz" pkg="rviz" type="rviz"/>
+    
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
+        <param name="use_gui" value="True"/>
+    </node>
+    
+    <arg name="use_gui" default="true" doc="Should the joint_state_publisher use a GUI for controlling joint states" />
+    <node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui" output="screen" if="$(arg use_gui)"/>
+</launch>
+-->
+
+
+<!-- Launch rviz with config.rviz-->
+<launch>    
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find mrm_description)/urdf/mrm.xacro'"/>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>   
+    <node name="rviz" pkg="rviz" type="rviz" args=" -d $(find mrm_description)/launch/config.rviz" />
+    
+    <node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui">
+        <param name="use_gui" value="True"/>
+    </node>
+    
+</launch>
