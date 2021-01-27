@@ -19,19 +19,9 @@
   <xacro:m_joint name="${link_00_name}__${link_01_name}" type="revolute"
            axis_xyz="0 0 1"
            origin_rpy="0 0 0" origin_xyz="0 0 0.5"
-           parent="${link_00_name}" child="${link_01_name}" />
+           parent="${link_00_name}" child="${link_01_name}"
+           limit_e="1000" limit_l="-3.14" limit_u="3.14" limit_v="0.5" />
   
-  <transmission name="trans_${link_00_name}__${link_01_name}">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="${link_00_name}__${link_01_name}">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="motor_${link_00_name}__${link_01_name}">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-        <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-
   <xacro:m_link_cylinder name="${link_01_name}"
               origin_rpy="0 0 0" origin_xyz="0 0 0.2"
               mass="157.633"
@@ -43,18 +33,8 @@
   <xacro:m_joint name="${link_01_name}__${link_02_name}" type="revolute"
            axis_xyz="0 1 0"
            origin_rpy="0 0 0" origin_xyz="0 0 0.4"
-           parent="${link_01_name}" child="${link_02_name}" />
-
-  <transmission name="trans_${link_01_name}__${link_02_name}">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="${link_01_name}__${link_02_name}">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="motor_${link_01_name}__${link_02_name}">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-        <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
+           parent="${link_01_name}" child="${link_02_name}"
+           limit_e="1000" limit_l="0" limit_u="0.5" limit_v="0.5" />
 
   <xacro:m_link_cylinder name="${link_02_name}"
               origin_rpy="0 0 0" origin_xyz="0 0 0.4"
@@ -64,10 +44,11 @@
               izz="0.651"
               radius="0.15" length="0.8" />
 
-  <!-- <xacro:m_joint name="${link_02_name}__${link_03_name}" type="revolute"
+  <xacro:m_joint name="${link_02_name}__${link_03_name}" type="revolute"
            axis_xyz="0 1 0"
            origin_rpy="0 0 0" origin_xyz="0 0 0.8"
-           parent="${link_02_name}" child="${link_03_name}" />
+           parent="${link_02_name}" child="${link_03_name}"
+           limit_e="1000" limit_l="0" limit_u="0.75" limit_v="0.5" />
 
   <xacro:m_link_cylinder name="${link_03_name}"
               origin_rpy="0 0 0" origin_xyz="0 0 0.4"
@@ -80,7 +61,8 @@
   <xacro:m_joint name="${link_03_name}__${link_04_name}" type="revolute"
            axis_xyz="0 1 0"
            origin_rpy="0 0 0" origin_xyz="0 0 0.8"
-           parent="${link_03_name}" child="${link_04_name}" />
+           parent="${link_03_name}" child="${link_04_name}" 
+           limit_e="1000" limit_l="0" limit_u="0.75" limit_v="0.5"/>
 
   <xacro:m_link_cylinder name="${link_04_name}"
               origin_rpy="0 0 0" origin_xyz="0 0 0.4"
@@ -93,7 +75,8 @@
   <xacro:m_joint name="${link_04_name}__${link_05_name}" type="revolute"
            axis_xyz="0 0 1"
            origin_rpy="0 0 0" origin_xyz="0 0 0.8"
-           parent="${link_04_name}" child="${link_05_name}" />
+           parent="${link_04_name}" child="${link_05_name}"
+           limit_e="1000" limit_l="-3.14" limit_u="3.14" limit_v="0.5" />
 
   <xacro:m_link_cylinder name="${link_05_name}"
               origin_rpy="0 0 0" origin_xyz="0 0 0.125"
@@ -101,7 +84,7 @@
               ixx="0.479" ixy="0" ixz="0"
               iyy="0.479" iyz="0"
               izz="0.204"
-              radius="0.15" length="0.25" /> -->
+              radius="0.15" length="0.25" /> 
   <!-- END - Robot description -->
 
 <gazebo>
