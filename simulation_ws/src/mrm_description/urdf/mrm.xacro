@@ -20,6 +20,17 @@
            axis_xyz="0 0 1"
            origin_rpy="0 0 0" origin_xyz="0 0 0.5"
            parent="${link_00_name}" child="${link_01_name}" />
+  
+  <transmission name="trans_${link_00_name}__${link_01_name}">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="${link_00_name}__${link_01_name}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor_${link_00_name}__${link_01_name}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
 
   <xacro:m_link_cylinder name="${link_01_name}"
               origin_rpy="0 0 0" origin_xyz="0 0 0.2"
@@ -34,6 +45,17 @@
            origin_rpy="0 0 0" origin_xyz="0 0 0.4"
            parent="${link_01_name}" child="${link_02_name}" />
 
+  <transmission name="trans_${link_01_name}__${link_02_name}">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="${link_01_name}__${link_02_name}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor_${link_01_name}__${link_02_name}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
   <xacro:m_link_cylinder name="${link_02_name}"
               origin_rpy="0 0 0" origin_xyz="0 0 0.4"
               mass="57.906"
@@ -42,7 +64,7 @@
               izz="0.651"
               radius="0.15" length="0.8" />
 
-  <xacro:m_joint name="${link_02_name}__${link_03_name}" type="revolute"
+  <!-- <xacro:m_joint name="${link_02_name}__${link_03_name}" type="revolute"
            axis_xyz="0 1 0"
            origin_rpy="0 0 0" origin_xyz="0 0 0.8"
            parent="${link_02_name}" child="${link_03_name}" />
@@ -79,9 +101,18 @@
               ixx="0.479" ixy="0" ixz="0"
               iyy="0.479" iyz="0"
               izz="0.204"
-              radius="0.15" length="0.25" />
+              radius="0.15" length="0.25" /> -->
   <!-- END - Robot description -->
+
+<gazebo>
+  <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+  </plugin>
+</gazebo>
 
 </robot>
 
+
 <!-- https://www.theconstructsim.com/my-robotic-manipulator-02-urdf-xacro/ -->
+
+<!-- How to add transmission is below -->
+<!-- https://www.theconstructsim.com/my-robotic-manipulator-04-urdf-transmission-gazebo-controllers/ -->
